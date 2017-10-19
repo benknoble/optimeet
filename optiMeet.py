@@ -26,13 +26,16 @@ def create_event():
     if request.args:
         eventname = request.args.get('eventName')
         username = request.args.get('name')
-        lat = float(request.args.get('long'))
-        long = float(request.args.get('lat'))
+        lat_s = request.args.get('long')
+        long_s = request.args.get('lat')
+        if "" in [ lat_s, long_s]:
+            return render_template("no_location.html", user=username,
+                    event=eventname)
+        lat = float(lat_s)
+        long = float(long_s)
         id, auth = database.create_event(eventname)
         database.add_person(id, username, long, lat)
         return redirect('/view-event/' + str(id) + '/' + auth + '/' + username + '?sharing=true')
-
-    
     return render_template('createEvent.html')
 
 @app.route('/create-event', methods = ['GET', 'POST'])
@@ -45,8 +48,12 @@ def join_event(id):
     if request.args:
         auth = request.args.get('auth')
         name = request.args.get('name')
-        lat = float(request.args.get('long'))
-        long = float(request.args.get('lat'))
+        lat_s = request.args.get('long')
+        long_s = request.args.get('lat')
+        if "" in [ lat_s, long_s]:
+            return render_template("no_location.html", user=name)
+        lat = float(lat_s)
+        long = float(long_s)
 
         if database.authenticate(id, auth):
             database.add_person(id, name, long, lat)
