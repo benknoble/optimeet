@@ -14,7 +14,7 @@ A simple web application to manage meeting friends at a convenient location.
 
 ### Try It Out!
 
-*coming online soon*
+[OptiMeet on Heroku](https://optimeet.herokuapp.com/)
 
 ### Build it locally
 
@@ -27,4 +27,8 @@ $ PORT=xxxx python2.7 optiMeet.py
 
 Using docker:
 
-*also coming soon*
+```
+$ docker run benknoble/optimeet:debug
+```
+
+Use `no-debug` for a version without debugging attached.
