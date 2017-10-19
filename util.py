@@ -34,7 +34,7 @@ def geographical_midpoint(list_of_locations):
     x_ave = total_x / len(list_of_locations)
     y_ave = total_y / len(list_of_locations)
     z_ave = total_z / len(list_of_locations)
-    
+
     long = atan2(y_ave, x_ave)
     hyp = sqrt(x_ave * x_ave + y_ave * y_ave)
     lat = atan2(z_ave, hyp)
@@ -43,7 +43,7 @@ def geographical_midpoint(list_of_locations):
 
 def get_list_of_locations(list_of_locations, types=['restaurant'], limits=5):
     long, lat = geographical_midpoint(list_of_locations)
-    google_base = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" 
+    google_base = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
     parameters = {
             'key': google_key,
             'location': "%s, %s" % (lat, long),
@@ -58,7 +58,7 @@ def get_list_of_locations(list_of_locations, types=['restaurant'], limits=5):
         r = requests.get(google_base, params = parameters)
         asciir += r.text
         result += r.json()['results']
-    
+
     else:
         r = requests.get(google_base, params = parameters)
         result += r.json()['results']
@@ -95,5 +95,5 @@ def get_list_of_locations(list_of_locations, types=['restaurant'], limits=5):
             },
             "properties": r
             })
-    
+
     return json.dumps(esri_format)
