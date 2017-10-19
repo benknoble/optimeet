@@ -8,6 +8,10 @@ database = DBManager()
 host = '0.0.0.0'
 port = int(os.environ['PORT']) if 'PORT' in os.environ else 5000
 base_url = "%s:%d" % (host, port)
+if 'OPTIMEET_DEBUG' in os.environ:
+    debug = os.environ['OPTIMEET_DEBUG'] in [ "True", "true", "T", "t", "1" ]
+else:
+    debug = True
 
 @app.route('/')
 def index():
@@ -103,5 +107,5 @@ def view_event(id, auth, name):
         return render_template("unauthorized.html")
 
 if (__name__ == '__main__'):
-    app.run(host=host, port=port, debug=True)
+    app.run(host=host, port=port, debug=debug)
 
