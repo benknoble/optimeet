@@ -1,10 +1,13 @@
 from flask import *
+import os
 import util
 from database import DBManager
 
 app = Flask(__name__)
 database = DBManager()
-base_url = 'localhost:5000'
+host = '0.0.0.0'
+port = int(os.environ['PORT']) if 'PORT' in os.environ else 5000
+base_url = "%s:%d" % (host, port)
 
 @app.route('/')
 def index():
@@ -93,5 +96,5 @@ def view_event(id, auth, name):
         return render_template("unauthorized.html")
 
 if (__name__ == '__main__'):
-    app.run(debug=True)
+    app.run(host=host, port=port, debug=True)
 
