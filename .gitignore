@@ -93,6 +93,3 @@ ENV/
 
 # backup stuff
 .*~
-
-# api keys
-*api_key.txt
