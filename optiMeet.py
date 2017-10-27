@@ -7,7 +7,7 @@ app = Flask(__name__)
 database = DBManager()
 host = '0.0.0.0'
 port = int(os.environ['PORT']) if 'PORT' in os.environ else 5000
-base_url = "%s:%d" % (host, port)
+base_url = os.environ['APP_URL'].rstrip('/') if 'APP_URL' in os.environ else "%s:%d" % (host, port)
 if 'OPTIMEET_DEBUG' in os.environ:
     debug = os.environ['OPTIMEET_DEBUG'] in [ "True", "true", "T", "t", "1" ]
 else:
