@@ -28,7 +28,8 @@ $ PORT=xxxx python2.7 optiMeet.py
 Using docker:
 
 ```
-$ docker run benknoble/optimeet:debug
+# run on localhost:4000
+$ docker run -p 4000:80 benknoble/optimeet:debug
 ```
 
 Use `no-debug` for a version without debugging attached.
