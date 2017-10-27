@@ -18,7 +18,7 @@ RUN mkdir db
 RUN pip install -r requirements.txt
 
 # decide whether or not to debug optimeet
-ENV OPTIMEET_DEBUG True
+ENV OPTIMEET_DEBUG False
 ENV PORT 80
 EXPOSE 80
 
